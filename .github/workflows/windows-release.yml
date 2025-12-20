@@ -1,0 +1,24 @@
+name: Windows build  pipeline
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: windows-2025
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: install visual studio community 2022 with C++ toolchain
+      run: winget install --source winget --exact --id Microsoft.VisualStudio.2022.Community --override "--passive --config <vsconfig-folder>\wdk.vsconfig"
+    - name : checkout clone
+      run : cd mapmap
+    - name : build the release version
+      run : cargo run --release
