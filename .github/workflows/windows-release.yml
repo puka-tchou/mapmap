@@ -18,7 +18,5 @@ jobs:
     - uses: actions/checkout@v4
     - name: install visual studio community 2022 with C++ toolchain
       run: winget install --source winget --exact --id Microsoft.VisualStudio.2022.Community --override "--passive --config ${GITHUB_WORKSPACE}\wdk.vsconfig"
-    - name : checkout clone
-      run : cd mapmap
     - name : build the release version
       run : cargo run --release
