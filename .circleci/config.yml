@@ -4,7 +4,7 @@ jobs:
   build-on-unix:
     type: build
     docker:
-      - image: cimg/rust
+      - image: cimg/rust:1.92.0
     steps:
       - run: sudo apt-get update
       - run: sudo apt-get install -y build-essential pkg-config
