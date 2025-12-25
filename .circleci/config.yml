@@ -36,6 +36,7 @@ jobs:
     executor: windows/default
     steps:
       - checkout
+      - run: choco uninstall rust -y
       - run:
           command: |
             curl https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-gnu/rustup-init.exe -o rustup-init.exe
