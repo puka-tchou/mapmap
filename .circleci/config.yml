@@ -15,8 +15,8 @@ jobs:
       - checkout
       - run: cargo build --release
       - store_artifacts:
-        path: /target/release/mapmap
-        destination: linux-release
+          path: /target/release/mapmap
+          destination: linux-release
   build-on-macos:
     type: build
     macos:
@@ -27,8 +27,8 @@ jobs:
       - checkout
       - run: cargo build --release
       - store_artifacts:
-        path: /target/release/mapmap
-        destination: macos-release
+          path: /target/release/mapmap
+          destination: macos-release
         
 workflows:
   binary_build:
