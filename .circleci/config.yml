@@ -16,8 +16,19 @@ jobs:
       - run: cargo build --release
     store_artifacts:
      path: ./target/release/mapmap
+  build-on-macos:
+    type: build
+    macos:
+      - xcode: "26.2.0"
+    steps:
+      - run: brew install ffmpeg
+      - checkout
+      - run: cargo build --release
+    store_artifacts:
+     - path: ./target/release/mapmap
         
 workflows:
   binary_build:
     jobs:
       - build-on-unix
+      - build-on-macos
