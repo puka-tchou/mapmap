@@ -17,7 +17,7 @@ jobs:
       - checkout
       - run: cargo build --release
       - store_artifacts:
-          path: $CIRCLE_WORKING_DIRECTORY/target/release/mapmap
+          path: ${CIRCLE_WORKING_DIRECTORY}/target/release/mapmap
           destination: linux-release
   build-on-macos:
     type: build
@@ -29,7 +29,7 @@ jobs:
       - checkout
       - run: cargo build --release
       - store_artifacts:
-          path: $CIRCLE_WORKING_DIRECTORY/target/release/mapmap
+          path: ${CIRCLE_WORKING_DIRECTORY}/target/release/mapmap
           destination: macos-release
   build-on-windows:
     type: build
@@ -41,9 +41,10 @@ jobs:
             curl https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-gnu/rustup-init.exe -o rustup-init.exe
             .\rustup-init.exe -vy
             echo 'export PATH=%USERPROFILE%/.cargo/bin:${PATH}' >> $BASH_ENV
+      - checkout
       - run: cargo build --release
       - store_artifacts:
-          path: $CIRCLE_WORKING_DIRECTORY/target/release/mapmap.exe
+          path: ${CIRCLE_WORKING_DIRECTORY}/target/release/mapmap.exe
           destination: windows-release
 
 workflows:
