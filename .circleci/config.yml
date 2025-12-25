@@ -33,7 +33,7 @@ jobs:
           destination: macos-release
   build-on-windows:
     type: build
-    executor: windows/server-2025-cuda
+    executor: windows/default
     steps:
       - run: winget install --source winget --exact --id Microsoft.VisualStudio.2022.Community --override "--passive --config ${CIRCLE_WORKING_DIRECTORY}\wdk.vsconfig"
       - run:
