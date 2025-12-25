@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  windows: circleci/windows@5.1.1
 
 jobs:
   build-on-unix:
@@ -15,7 +17,7 @@ jobs:
       - checkout
       - run: cargo build --release
       - store_artifacts:
-          path: /target/release/mapmap
+          path: CIRCLE_WORKING_DIRECTORY/target/release/mapmap
           destination: linux-release
   build-on-macos:
     type: build
@@ -27,9 +29,22 @@ jobs:
       - checkout
       - run: cargo build --release
       - store_artifacts:
-          path: /target/release/mapmap
+          path: CIRCLE_WORKING_DIRECTORY/target/release/mapmap
           destination: macos-release
-        
+  build-on-windows:
+    type: build
+    executor: win/server-2025-cuda
+    steps:
+      - run: winget install --source winget --exact --id Microsoft.VisualStudio.2022.Community --override "--passive --config ${CIRCLE_WORKING_DIRECTORY}\wdk.vsconfig"
+      - run:
+        command: |
+          curl https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-gnu/rustup-init.exe -o rustup-init.exe
+          .\rustup-init.exe -vy
+      - run: cargo build --release
+      - store_artifacts:
+        path: CIRCLE_WORKING_DIRECTORY/target/release/mapmap.exe
+        destination: windows-release
+
 workflows:
   binary_build:
     jobs:
