@@ -19,7 +19,7 @@ jobs:
   build-on-macos:
     type: build
     macos:
-      - xcode: "26.2.0"
+      xcode: "26.2.0"
     steps:
       - run: brew install ffmpeg
       - checkout
