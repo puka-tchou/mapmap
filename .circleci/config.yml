@@ -17,7 +17,7 @@ jobs:
       - checkout
       - run: cargo build --release
       - store_artifacts:
-          path: ${CIRCLE_WORKING_DIRECTORY}/target/release/mapmap
+          path: ./target/release/mapmap
           destination: linux-release
   build-on-macos:
     type: build
@@ -29,7 +29,7 @@ jobs:
       - checkout
       - run: cargo build --release
       - store_artifacts:
-          path: ${CIRCLE_WORKING_DIRECTORY}/target/release/mapmap
+          path: ./target/release/mapmap
           destination: macos-release
   build-on-windows:
     type: build
@@ -44,7 +44,7 @@ jobs:
             echo 'export PATH=%USERPROFILE%/.cargo/bin:${PATH}' >> $BASH_ENV
       - run: cargo build --release
       - store_artifacts:
-          path: ${CIRCLE_WORKING_DIRECTORY}/target/release/mapmap.exe
+          path: ./target/release/mapmap.exe
           destination: windows-release
 
 workflows:
