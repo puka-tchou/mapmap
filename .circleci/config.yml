@@ -36,7 +36,10 @@ jobs:
     executor: windows/default
     steps:
       - checkout
-      - run: choco install visualstudio2022community --force --package-parameters "--passive --add Microsoft.VisualStudio.Workload.NativeDesktop --force --includeRecommended --includeOptional"
+      - run:
+          command: |
+            curl https://aka.ms/vs/stable/vs_community.exe -o vs_community.exe
+            .\vs_community.exe --passive --add Microsoft.VisualStudio.Workload.NativeDesktop --force --includeRecommended --includeOptional
       - run:
           command: |
             curl https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-gnu/rustup-init.exe -o rustup-init.exe
