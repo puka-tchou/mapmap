@@ -22,7 +22,7 @@ jobs:
       xcode: "26.2.0"
     steps:
       - run: brew install ffmpeg
-      - run: curl https://sh.rustup.rs -sSf | sh
+      - run: curl https://sh.rustup.rs -sSf | sh -s -- -y
       - checkout
       - run: cargo build --release
     store_artifacts:
