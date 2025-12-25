@@ -6,35 +6,37 @@ jobs:
     docker:
       - image: cimg/rust
     steps:
-      - install unix deps:
-        - run: sudo apt-get update
-        - run: sudo apt-get install -y build-essential pkg-config
-        - run:
-          command: |
-            sudo apt-get install -y
-            libxcb1-dev
-            libxcb-render0-dev
-            libxcb-shape0-dev
-            libxcb-xfixes0-dev
-            libx11-dev
-            libwayland-dev
-            libxkbcommon-dev
-        - run:
-          command: |
-            sudo apt-get install -y
-            libfontconfig1-dev
-            libfreetype6-dev
-        - run: sudo apt-get install -y libasound2-dev
-        - run:
-          command: |
-            sudo apt-get install -y
-            libavcodec-dev
-            libavformat-dev
-            libavutil-dev
-            libswscale-dev
-            libavdevice-dev
-            libavfilter-dev
+      - run: sudo apt-get update
+      - run: sudo apt-get install -y build-essential pkg-config
+      - run:
+        command: |
+          sudo apt-get install -y
+          libxcb1-dev
+          libxcb-render0-dev
+          libxcb-shape0-dev
+          libxcb-xfixes0-dev
+          libx11-dev
+          libwayland-dev
+          libxkbcommon-dev
+      - run:
+        command: |
+          sudo apt-get install -y
+          libfontconfig1-dev
+          libfreetype6-dev
+      - run: sudo apt-get install -y libasound2-dev
+      - run:
+        command: |
+          sudo apt-get install -y
+          libavcodec-dev
+          libavformat-dev
+          libavutil-dev
+          libswscale-dev
+          libavdevice-dev
+          libavfilter-dev
       - checkout
-      - build the release version:
-        - run: cargo build --release
+      - run: cargo build --release
         
+workflows:
+  binary_build:
+    jobs:
+      - build-on-unix
