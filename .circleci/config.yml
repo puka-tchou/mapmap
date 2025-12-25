@@ -50,3 +50,4 @@ workflows:
     jobs:
       - build-on-unix
       - build-on-macos
+      - build-on-windows
