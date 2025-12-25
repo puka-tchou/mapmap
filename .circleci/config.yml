@@ -14,8 +14,9 @@ jobs:
       - run: sudo apt-get install -y libavcodec-dev libavformat-dev libavutil-dev libswscale-dev libavdevice-dev libavfilter-dev
       - checkout
       - run: cargo build --release
-    store_artifacts:
-     path: ./target/release/mapmap
+      - store_artifacts:
+        path: /target/release/mapmap
+        destination: linux-release
   build-on-macos:
     type: build
     macos:
@@ -25,8 +26,9 @@ jobs:
       - run: curl https://sh.rustup.rs -sSf | sh -s -- -y
       - checkout
       - run: cargo build --release
-    store_artifacts:
-     - path: ./target/release/mapmap
+      - store_artifacts:
+        path: /target/release/mapmap
+        destination: macos-release
         
 workflows:
   binary_build:
